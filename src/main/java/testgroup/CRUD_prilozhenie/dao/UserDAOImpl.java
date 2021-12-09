@@ -2,12 +2,13 @@ package testgroup.CRUD_prilozhenie.dao;
 
 import org.springframework.stereotype.Repository;
 import testgroup.CRUD_prilozhenie.model.User;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
     private EntityManager manager;
@@ -35,5 +36,12 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User getById(int id) {
         return manager.find(User.class, id);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return manager
+                .createQuery("from User where userName = :username", User.class)
+                .setParameter("username", username).getSingleResult();
     }
 }

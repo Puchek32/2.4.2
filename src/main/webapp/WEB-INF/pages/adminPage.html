@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:au="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+</head>
+<body>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Log out"/>
+</form>
+
+<h1>Users List</h1>
+<p><a href="/admin/add">Add new user</a></p>
+<div>
+    <h2 th:if="${usersList == null || usersList.isEmpty()}">No users yet!</h2>
+    <div th:if="${usersList != null && !usersList.isEmpty()}">
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Job</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <th:block th:each="user : ${usersList}">
+                <tr>
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getFirstName()}"></td>
+                    <td th:text="${user.getLastName()}"></td>
+                    <td th:text="${user.getAge()}"></td>
+                    <td th:text="${user.getJob()}"></td>
+                    <td th:text="${user.getUsername()}"></td>
+                    <td th:text="${user.getUserRole()}">model</td>
+                    <td><a th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
+                    <td><a th:href="@{/admin/delete/{id}(id=${user.getId()})}">Delete</a></td>
+                </tr>
+            </th:block>
+            </th:block>
+        </table>
+    </div>
+</div>
+</body>
+</html>

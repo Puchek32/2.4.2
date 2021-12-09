@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:au="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+</head>
+<body>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Log out"/>
+</form>
+
+<h1>User</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Job</th>
+            <th>Username</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tr>
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getFirstName()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getJob()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getUserRole()}">model</td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>
